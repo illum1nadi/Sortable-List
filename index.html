@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Sortable-List</title>
+</head>
+<body>
+    
+    <div class="justify-center items-center m-5">
+        <!-- container for all the top headings. -->
+        <div class="pageHeadings">
+            <h1 class="text-center text-4xl mb-5">Top 10 Richest People</h1>
+            <h4 class="text-center text-md">Drag and drop the people to their right spot in the ranking.</h6>
+       </div> 
+       <!-- container for the sortable list component. -->
+       <div class="sortableList">
+            <!-- unordered list as noticed numbers were not moving with drag. -->
+            <ul id="draggableList">
+                <div class="flex justify-center">
+                    <p>1.</p>
+                    <li draggable="true">element1</li>
+                </div>
+                <!-- div to separate the number which is not draggable with the draggable list component. -->
+                <div class="flex justify-center">
+                    <p>2.</p>
+                    <li draggable="true">element2</li>
+                </div>
+                <div class="flex justify-center">
+                    <p>3.</p>
+                    <li draggable="true">element3</li>
+                </div>
+                <div class="flex justify-center">
+                    <p>4.</p>
+                    <li draggable="true">element4</li>
+                </div>
+                <div class="flex justify-center">
+                    <p>5.</p>
+                    <li draggable="true">element5</li>
+                </div>
+                <div class="flex justify-center">
+                    <p>6.</p>
+                    <li draggable="true">element6</li>
+                </div>
+                <div class="flex justify-center">
+                    <p>7.</p>
+                    <li draggable="true">element7</li>
+                </div>
+                <div class="flex justify-center">
+                    <p>8.</p>
+                    <li draggable="true">element8</li>
+                </div>
+                <div class="flex justify-center">
+                    <p>9.</p>
+                    <li draggable="true">element9</li>
+                </div>
+                <div class="flex justify-center">
+                    <p>10.</p>
+                    <li draggable="true">element10</li>
+                </div>
+            </ul>
+       </div>
+    </div>
+</body>
+</html>

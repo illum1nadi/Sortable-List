@@ -36,6 +36,7 @@ function dragoverHandler(ev) {
     ev.preventDefault(); 
 }
 
+
 function dropHandler(ev) {
     ev.preventDefault();
     const draggedItemId = ev.dataTransfer.getData("text/plain");
@@ -45,28 +46,27 @@ function dropHandler(ev) {
     //noticed dropping in the same place had no change.
     if(!dropTarget || draggedElement === dropTarget) return;
 
-    const draggedElementContainer = draggedElement.closest('li');
-    const droppedElementContainer = dropTarget.closest('li');
+    let temp = draggedElement.innerHTML;
+    draggedElement.innerHTML = dropTarget.innerHTML;
+    dropTarget.innerHTML = temp;
 
-    if(draggedElementContainer && droppedElementContainer && draggedElementContainer !== droppedElementContainer) {
-        draggableList.insertBefore(draggedElementContainer, droppedElementContainer);
-    }
+    draggedElement.addEventListener('dragstart', dragstartHandler);
+    draggedElement.addEventListener('dragover', dragoverHandler);
+    draggedElement.addEventListener('drop', dropHandler);
 
-    //to create a copy of the dom elements we can usee cloneNode.
-    //true for nested divs.
-    const draggedCopy = draggedElementContainer.cloneNode(true);
-    const droppedCopy = droppedElementContainer.cloneNode(true);
+    dropTarget.addEventListener('dragstart', dragstartHandler);
+    dropTarget.addEventListener('dragover', dragoverHandler);
+    dropTarget.addEventListener('drop', dropHandler);
 
-    draggedCopy.querySelector('.draggable-item').addEventListener('dragstart', dragstartHandler);
-    draggedCopy.querySelector('.draggable-item').addEventListener('dragover', dragoverHandler);
-    draggedCopy.querySelector('.draggable-item').addEventListener('drop', dropHandler);
-
-    droppedCopy.querySelector('.draggable-item').addEventListener('dragstart', dragstartHandler);
-    droppedCopy.querySelector('.draggable-item').addEventListener('dragover', dragoverHandler);
-    droppedCopy.querySelector('.draggable-item').addEventListener('drop', dropHandler);
-
-    draggableList.replaceChild(draggedCopy, droppedContainer);
-    draggableList.replaceChild(droppedCopy, draggedContainer);
+    //update the list.
+    let items = document.querySelectorAll('.draggable-item');
+    //to clear the current list.
+    currentList.splice(0, currentList.length);
+    items.forEach(item => {
+        const personName = item.querySelector('.personName').textContent;
+        currentList.push(personName);
+    });
+    console.log(currentList);
 }
 
 function shuffleArray(array) {

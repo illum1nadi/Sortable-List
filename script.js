@@ -112,6 +112,8 @@ function submitButtonAction() {
         const itemName = item.querySelector('.personName').textContent;
         newList.push(itemName);
         console.log(newList[index], list[index]);
+        //removed existing classes to avoid cascading effects.
+        item.querySelector('.personName').classList.remove('text-green-500', 'text-red-500');
         if(newList[index] === list[index]) {
             item.querySelector('.personName').classList.add('text-green-500');
         }

@@ -36,6 +36,38 @@ function dragoverHandler(ev) {
     ev.preventDefault(); 
 }
 
+//fix2 : separated updating the list on drop.
+function updateList() {
+     //update the list.
+    let items = document.querySelectorAll('.draggable-item');
+    //to clear the current list.
+    currentList.splice(0, currentList.length);
+    items.forEach(item => {
+        const personName = item.querySelector('.personName').textContent;
+        currentList.push(personName);
+    });
+    console.log(currentList);
+}
+
+function swapLists(draggedElement, dropTarget) {
+    const draggedCopy = draggedElement.cloneNode(true);
+    const dropCopy = dropTarget.cloneNode(true);
+
+    //id conflict was creating issues, so added -copy to the id.
+    draggedCopy.id = draggedElement.id + "-copy";
+    dropCopy.id = dropTarget.id + "-copy";
+
+    console.log(draggedCopy, dropCopy);
+    draggedElement.parentNode.replaceChild(dropCopy, draggedElement);
+    dropTarget.parentNode.replaceChild(draggedCopy, dropTarget);
+    draggedCopy.addEventListener('dragstart', dragstartHandler);
+    draggedCopy.addEventListener('dragover', dragoverHandler);
+    draggedCopy.addEventListener('drop', dropHandler);
+
+    dropCopy.addEventListener('dragstart', dragstartHandler);
+    dropCopy.addEventListener('dragover', dragoverHandler);
+    dropCopy.addEventListener('drop', dropHandler);
+}
 
 function dropHandler(ev) {
     ev.preventDefault();
@@ -46,27 +78,13 @@ function dropHandler(ev) {
     //noticed dropping in the same place had no change.
     if(!dropTarget || draggedElement === dropTarget) return;
 
-    let temp = draggedElement.innerHTML;
-    draggedElement.innerHTML = dropTarget.innerHTML;
-    dropTarget.innerHTML = temp;
+    // let temp = draggedElement.innerHTML;
+    // draggedElement.innerHTML = dropTarget.innerHTML;
+    // dropTarget.innerHTML = temp;
 
-    draggedElement.addEventListener('dragstart', dragstartHandler);
-    draggedElement.addEventListener('dragover', dragoverHandler);
-    draggedElement.addEventListener('drop', dropHandler);
-
-    dropTarget.addEventListener('dragstart', dragstartHandler);
-    dropTarget.addEventListener('dragover', dragoverHandler);
-    dropTarget.addEventListener('drop', dropHandler);
-
-    //update the list.
-    let items = document.querySelectorAll('.draggable-item');
-    //to clear the current list.
-    currentList.splice(0, currentList.length);
-    items.forEach(item => {
-        const personName = item.querySelector('.personName').textContent;
-        currentList.push(personName);
-    });
-    console.log(currentList);
+    //fixed logic to swap all components, will change to function.
+    swapLists(draggedElement, dropTarget);
+    updateList();
 }
 
 function shuffleArray(array) {
@@ -87,6 +105,12 @@ function shuffleArray(array) {
 function startGame() {
     submitButton.addEventListener('click', submitButtonAction);
     currentList = shuffleArray(currentList);
+    loadList();
+    dragEventHandler();
+}
+
+//fix1 : separated code to load list.
+function loadList() {
     currentList.forEach((item, index) => {
         const listItem = document.createElement('li');
         listItem.className = "flex justify-center";
@@ -101,7 +125,6 @@ function startGame() {
         `
         draggableList.appendChild(listItem);
     })
-    dragEventHandler();
 }
 
 function submitButtonAction() {

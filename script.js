@@ -14,7 +14,10 @@ const list = [
     "Larry Page",
 ];
 
-let currentList = list;
+
+//got to know in array direct assignment, the reference is copied, not the value.
+//so we have to use splice or spread operator. 
+let currentList = [...list];
 
 function shuffleArray(array) {
     //from gfg, code for fisher-yates shuffle algorithm.
@@ -32,6 +35,7 @@ function shuffleArray(array) {
 }
 
 function startGame() {
+    submitButton.addEventListener('click', submitButtonAction);
     currentList = shuffleArray(currentList);
     currentList.forEach((item, index) => {
         const listItem = document.createElement('li');
@@ -39,8 +43,8 @@ function startGame() {
         listItem.innerHTML = `
             <div class="flex justify-left items-center border-1 w-70 h-15">
                 <p class="w-14 h-14 text-center flex items-center justify-center bg-gray-300 mr-2">${index + 1}</p>
-                <div draggable="true" class="w-60 flex justify-between items-center">
-                    <div class="" >${item}</div>
+                <div draggable="true" class="w-60 flex justify-between items-center" id="item-${index}">
+                    <div class="personName">${item}</div>
                     <span style="font-size: 24px;" class="mr-2">☰</span>
                 </div>
             </div>
@@ -48,5 +52,24 @@ function startGame() {
         draggableList.appendChild(listItem);
     })
 }
+
+function submitButtonAction() {
+    const newItems = document.querySelectorAll('#draggableList li');
+    const newList = [];
+    console.log(list);
+    newItems.forEach((item, index) => {
+        const itemName = item.querySelector('.personName').textContent;
+        newList.push(itemName);
+        console.log(newList[index], list[index]);
+        if(newList[index] === list[index]) {
+            item.querySelector('.personName').classList.add('text-green-500');
+        }
+        else {
+            item.querySelector('.personName').classList.add('text-red-500');
+        }
+    })
+}
+
+
 
 startGame();

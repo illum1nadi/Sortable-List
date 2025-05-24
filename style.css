@@ -1,0 +1,76 @@
+.contentBox {
+    justify-content: center;
+    align-items: center;
+    margin: 1.25rem;
+}
+
+.pageHeadings {
+    margin-bottom: 2.5rem;
+}
+
+.mainHeading {
+    text-align: center;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.subHeading {
+    text-align: center;
+    font-size: 1rem;
+}
+
+.sortableList > div {
+    display: flex;
+    justify-content:center;
+}
+
+.submitButtonContainer {
+    display: flex;
+    justify-content: center;
+    margin: 1.25rem;
+}
+
+#submitButton {
+    display: flex;              
+    align-items: center;
+    justify-content: center;     
+    text-align: center;
+    border: 2px solid;
+    width: 10rem;                
+    height: 3.75rem;             
+    background-color: #3B82F6;   
+    color: black;
+    transition: background-color 0.3s ease;
+}
+
+#submitButton:hover {
+    background-color: #1D4ED8;
+}
+
+.draggable-item {
+    width: 15rem;                
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sortItem {
+    display: flex;
+    justify-content: flex-start;   
+    align-items: center;
+    border: 1px solid;
+    width: 17.5rem;  
+    height: 3.75rem; 
+}
+
+.sortItem > p {
+    width: 3.5rem;             
+    height: 3.5rem;            
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #D1D5DB; 
+    margin-right: 0.5rem;    
+}

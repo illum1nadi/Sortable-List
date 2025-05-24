@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>Sortable-List</title>
 </head>
 <body>
     
-    <div class="justify-center items-center m-5">
+    <div class="contentBox">
         <!-- container for all the top headings. -->
-        <div class="pageHeadings mb-10">
-            <h1 class="text-center text-4xl mb-5">Top 10 Richest People</h1>
-            <h4 class="text-center text-md">Drag and drop the people to their right spot in the ranking.</h6>
+        <div class="pageHeadings">
+            <h1 class="mainHeading">Top 10 Richest People</h1>
+            <h4 class="subHeading">Drag and drop the people to their right spot in the ranking.</h6>
        </div> 
        <!-- container for the sortable list component. -->
        <div class="sortableList">
-        <div class="flex justify-center">
+        <div>
             <!-- unordered list as noticed numbers were not moving with drag. -->
             <ul id="draggableList">
                 <!-- imported from script.js -->
             </ul>
        </div>
-       <div class="submitButtonContainer flex justify-center m-5">
-            <button id="submitButton" class="text-center items-center border-2 w-40 h-15 bg-blue-500 text-black hover:bg-blue-700">
+       <div class="submitButtonContainer">
+            <button id="submitButton">
                 Submit Your Ranking
             </button>
        </div>

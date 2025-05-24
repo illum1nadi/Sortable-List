@@ -115,9 +115,9 @@ function loadList() {
         const listItem = document.createElement('li');
         listItem.className = "flex justify-center";
         listItem.innerHTML = `
-            <div class="flex justify-left items-center border-1 w-70 h-15">
-                <p class="w-14 h-14 text-center flex items-center justify-center bg-gray-300 mr-2">${index + 1}</p>
-                <div draggable="true" class="draggable-item w-60 flex justify-between items-center" id="item-${index}">
+            <div class="sortItem">
+                <p>${index + 1}</p>
+                <div draggable="true" class="draggable-item" id="item-${index}">
                     <div class="personName">${item}</div>
                     <span style="font-size: 24px;" class="mr-2">☰</span>
                 </div>

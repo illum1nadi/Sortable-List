@@ -46,6 +46,7 @@
 
 #submitButton:hover {
     background-color: #1D4ED8;
+    cursor: pointer !important;
 }
 
 .draggable-item {
@@ -53,6 +54,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex: 1;
+    height: 100%;
 }
 
 .sortItem {
@@ -72,5 +75,14 @@
     align-items: center;
     justify-content: center;
     background-color: #D1D5DB; 
-    margin-right: 0.5rem;    
+    /* margin-right: 0.5rem;     */
+}
+
+.draggable-item:hover {
+    cursor: pointer;
+}
+
+.drag-over {
+    background-color: #BFDBFE;
+    transition: background-color 0.2s ease;
 }

@@ -25,6 +25,8 @@ function dragEventHandler() {
         item.addEventListener('dragstart', dragstartHandler);
         item.addEventListener('dragover', dragoverHandler);
         item.addEventListener('drop', dropHandler);
+        //for the hover effect on drag and drop.
+        item.addEventListener('dragleave', dragleaveHandler);
     })
 }
 
@@ -34,6 +36,18 @@ function dragstartHandler(ev) {
 
 function dragoverHandler(ev) {
     ev.preventDefault(); 
+    document.querySelectorAll('.draggable-item').forEach(item => item.classList.remove('drag-over'));
+    const dropTarget = ev.target.closest('.draggable-item');
+    if (dropTarget) {
+        dropTarget.classList.add('drag-over');
+    }
+}
+
+function dragleaveHandler(ev) {
+    const dropTarget = ev.target.closest('.draggable-item');
+    if (dropTarget) {
+        dropTarget.classList.remove('drag-over');
+    }
 }
 
 //fix2 : separated updating the list on drop.
@@ -75,8 +89,15 @@ function dropHandler(ev) {
     const draggedElement = document.getElementById(draggedItemId);
     const dropTarget = ev.target.closest('.draggable-item');
 
+    
+    //to remove the drag-over class from the drop target.
+    document.querySelectorAll('.draggable-item').forEach(item =>
+        item.classList.remove('drag-over')
+    );
+
     //noticed dropping in the same place had no change.
     if(!dropTarget || draggedElement === dropTarget) return;
+
 
     // let temp = draggedElement.innerHTML;
     // draggedElement.innerHTML = dropTarget.innerHTML;
